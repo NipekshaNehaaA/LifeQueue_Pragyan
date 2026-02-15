@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+
+    --card: 220 40% 8%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 220 40% 8%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 160 84% 39%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 185 80% 40%;
+    --secondary-foreground: 222 47% 6%;
+
+    --muted: 220 30% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 185 80% 40%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 30% 18%;
+    --input: 220 30% 14%;
+    --ring: 160 84% 39%;
+
+    --radius: 0.75rem;
+
+    --warning: 45 93% 47%;
+    --warning-foreground: 222 47% 6%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 222 47% 6%;
+
+    --glow-emerald: 160 84% 39%;
+    --glow-cyan: 185 80% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow:
+      0 0 15px hsl(var(--glow-emerald) / 0.05),
+      inset 0 1px 0 hsl(var(--foreground) / 0.05);
+  }
+
+  .glass-card-glow {
+    @apply glass-card;
+    box-shadow:
+      0 0 20px hsl(var(--glow-emerald) / 0.1),
+      0 0 40px hsl(var(--glow-cyan) / 0.05),
+      inset 0 1px 0 hsl(var(--foreground) / 0.05);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--glow-emerald) / 0.5);
+  }
+
+  .glow-border-emerald {
+    box-shadow: 0 0 15px hsl(var(--glow-emerald) / 0.3), inset 0 0 15px hsl(var(--glow-emerald) / 0.05);
+  }
+
+  .glow-border-cyan {
+    box-shadow: 0 0 15px hsl(var(--glow-cyan) / 0.3), inset 0 0 15px hsl(var(--glow-cyan) / 0.05);
+  }
+
+  .timeline-line {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--glow-emerald) / 0.1) 0%,
+      hsl(var(--glow-emerald) / 0.6) 20%,
+      hsl(var(--glow-cyan) / 0.6) 80%,
+      hsl(var(--glow-cyan) / 0.1) 100%
+    );
+    box-shadow: 0 0 10px hsl(var(--glow-emerald) / 0.3), 0 0 20px hsl(var(--glow-cyan) / 0.15);
+  }
+
+  .timeline-dot {
+    @apply w-4 h-4 rounded-full border-2;
+    border-color: hsl(var(--glow-emerald));
+    background: hsl(var(--glow-emerald) / 0.3);
+    box-shadow: 0 0 10px hsl(var(--glow-emerald) / 0.5), 0 0 20px hsl(var(--glow-emerald) / 0.2);
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 10px hsl(var(--glow-emerald) / 0.3); }
+    50% { box-shadow: 0 0 25px hsl(var(--glow-emerald) / 0.6), 0 0 50px hsl(var(--glow-cyan) / 0.3); }
+  }
+
+  @keyframes scan {
+    0% { transform: translateY(0); opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0.5; }
+  }
+
+  .scan-line {
+    animation: scan 2s ease-in-out infinite;
+  }
+}
